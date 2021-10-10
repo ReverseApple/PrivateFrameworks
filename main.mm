@@ -5,20 +5,29 @@
 // Private frameworks...
 #include <CoreBrightness/CBClient.h>
 #include <CoreBrightness/CBBlueLightClient.h>
+#include <CoreBrightness/CBAdaptationClient.h>
 
 using namespace std;
 
-
-bool ns_enable(CBClient *client){
-
-    // Enable night shift...
+bool nightshift_set(CBClient *client, BOOL enable){
     CBBlueLightClient *blc = [client blueLightClient];
-    bool success = [blc setEnabled:YES];
-
+    bool success = [blc setEnabled:enable];
     return success;
 }
 
+bool truetone_set(CBClient *client, BOOL enable){
+    CBAdaptationClient *adc = [client adaptationClient];
+    bool success = [adc setEnabled:enable];
+    return success;
+}
+
+void print(const string& msg){
+    cout << msg << endl;
+}
+
+
 int main() {
+    cout << "CoreBrightness Test -- By: Angelo DeLuca" << endl << "--" << endl;
 
     // Check whether system supports blue light reduction and adaptation...
     bool blr_support = [CBClient supportsBlueLightReduction];
@@ -28,16 +37,54 @@ int main() {
     CBClient *client = [[CBClient alloc] init];
 
     if(blr_support){
-        cout << "Your system supports blue light reduction." << endl;
+        print("Your system supports blue light reduction.");
+        print("Enabling Night Shift in five seconds...");
 
-        usleep(3);
-        ns_enable(client);
+        sleep(5);
+
+        bool ns_success = nightshift_set(client, true);
+        if(ns_success){
+            print("Night Shift enabled successfully.");
+        }else{
+            print("Night Shift enable failed.");
+        }
+
+        sleep(5);
+
+        ns_success = nightshift_set(client, false);
+        if(ns_success){
+            print("Night Shift disabled successfully.");
+        }else{
+            print("Night Shift disable failed.");
+        }
+
     }else{
-        cout << "Your system does not support blue light reduction." << endl;
+        print("Your system does not support blue light reduction and the test cannot be completed.");
     }
 
     if(tt_support){
-        cout << "Your system supports adaptation (which may refer to TrueTone)." << endl;
+        print("Your system supports adaptation (which may refer to TrueTone).");
+
+        print("Enabling TrueTone in five seconds...");
+
+        sleep(5);
+
+        bool tt_success = truetone_set(client, true);
+        if(tt_success){
+            print("TrueTone enabled successfully.");
+        }else{
+            print("TrueTone enable failed.");
+        }
+
+        sleep(5);
+
+        tt_success = truetone_set(client, false);
+        if(tt_success){
+            print("TrueTone disabled successfully.");
+        }else{
+            print("TrueTone disable failed.");
+        }
+
     }
 
 
