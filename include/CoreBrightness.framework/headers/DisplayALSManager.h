@@ -4,24 +4,25 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
-
-@class AmbientLightSensorStats, NSObject<OS_dispatch_queue>, NSObject<OS_os_log>;
+//#import "NSObject.h"
+//#import <Foundation/Foundation.h>
+//#import "AmbientLightSensorStats.h"
+@class AmbientLightSensorStats, OS_dispatch_queue, OS_os_log;
 
 __attribute__((visibility("hidden")))
 @interface DisplayALSManager : NSObject
 {
     NSObject<OS_dispatch_queue> *_queue;
-    struct ALSStruct _als;
-    struct DisplayStruct _display;
+    struct ALSStruct;
+    struct DisplayStruct;
     struct __CFString *_IOPMDynamicStoreSettingsKey;
     struct __SCDynamicStore *_SCDynamicStore;
     struct {
         long long _field1;
         void *_field2;
-        CDUnknownFunctionPointerType _field3;
-        CDUnknownFunctionPointerType _field4;
-        CDUnknownFunctionPointerType _field5;
+        id _field3;
+        id _field4;
+        id _field5;
     } *_SCDynamicStoreContext;
     int _currentReducedBrightnessSetting;
     AmbientLightSensorStats *_alsStats;
@@ -29,7 +30,7 @@ __attribute__((visibility("hidden")))
     struct IONotificationPort *_powerNotifierPortRef;
     unsigned int _powerNotifierObject;
     _Bool _removedMagSafeOnSleep;
-    NSObject<OS_os_log> *_logHandle;
+    id *_logHandle;
 }
 
 - (void)forceUpdate:(unsigned int)arg1;

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <Foundation/Foundation.h>
+#include "simplebrightness/library.h"
 
 // Private frameworks...
 #include <CoreBrightness/CBClient.h>
@@ -87,6 +88,39 @@ int main() {
 
     }
 
+    sleep(4);
+
+    print("I will now flash the keyboard five times to test the backlight.");
+
+    simplebrightness::setKeyboardBrightness(0);
+    sleep(1);
+    simplebrightness::setKeyboardBrightness(1);
+    sleep(1);
+    simplebrightness::setKeyboardBrightness(0);
+    sleep(1);
+    simplebrightness::setKeyboardBrightness(1);
+    sleep(1);
+    simplebrightness::setKeyboardBrightness(0);
+    sleep(1);
+    simplebrightness::setKeyboardBrightness(1);
+    sleep(1);
+    simplebrightness::setKeyboardBrightness(0);
+    sleep(1);
+    simplebrightness::setKeyboardBrightness(1);
+    sleep(1);
+    simplebrightness::setKeyboardBrightness(0);
+    sleep(1);
+    simplebrightness::setKeyboardBrightness(1);
+
+    print("Test complete!");
+
+    sleep(3);
+
+    print("Resetting to 25% keyboard brightness...");
+
+    simplebrightness::setKeyboardBrightness(0.25);
+
+    sleep(2);
 
     return 0;
 }

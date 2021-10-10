@@ -4,17 +4,17 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+//#import "NSObject.h"
 
-@class BrightnessSystemClient, NSObject<OS_os_log>;
+@class BrightnessSystemClient, OS_os_log;
 
 @interface KeyboardBrightnessClient : NSObject
 {
     BrightnessSystemClient *bsc;
-    NSObject<OS_os_log> *_logHandle;
+    id *_logHandle;
 }
 
-- (void)registerNotificationForKeys:(id)arg1 keyboardID:(unsigned long long)arg2 block:(CDUnknownBlockType)arg3;
+- (void)registerNotificationForKeys:(id)arg1 keyboardID:(unsigned long long)arg2 block:(id)arg3;
 - (void)unregisterKeyboardNotificationBlock;
 - (BOOL)isAutoBrightnessEnabledForKeyboard:(unsigned long long)arg1;
 - (BOOL)isIdleDimmingSuspendedOnKeyboard:(unsigned long long)arg1;

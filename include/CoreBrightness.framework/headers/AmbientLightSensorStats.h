@@ -4,15 +4,15 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import <Foundation>
+//#import <Foundation/Foundation.h>
 
-@class NSLock, NSObject<OS_dispatch_source>;
+//#import NSLock, NSObject<OS_dispatch_source>;
 
 __attribute__((visibility("hidden")))
 @interface AmbientLightSensorStats : NSObject
 {
-    CDStruct_93cb412c _activityFilteredStats;
-    CDStruct_93cb412c _unfilteredStats;
+    id _activityFilteredStats;
+    id _unfilteredStats;
     NSObject<OS_dispatch_source> *_reportTimer;
     unsigned long long _alsIdleEventStartTime;
     NSObject<OS_dispatch_source> *_alsIdleTimer;
@@ -33,7 +33,7 @@ __attribute__((visibility("hidden")))
 - (void)logALSIdleEvent:(_Bool)arg1;
 - (void)cancelALSIdleTimer;
 - (void)startALSIdleTimer;
-- (void)logALSEventLocked:(float)arg1 forStats:(CDStruct_93cb412c *)arg2;
+- (void)logALSEventLocked:(float)arg1 forStats:(id *)arg2;
 - (void)logALSEvent:(float)arg1;
 - (void)reportUnfilteredLux:(int)arg1 range:(int)arg2 changes:(int)arg3 enabled:(int)arg4;
 - (void)reportActivityFilteredLux:(int)arg1 range:(int)arg2;
