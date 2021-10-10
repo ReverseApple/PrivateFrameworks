@@ -27,6 +27,6 @@ Where `CoreBrightness` gets replaced with the name of the name of the framework 
 The `-iframework` flag simply gives CMake context as to where the private framework is located.
 
 ### clang troubleshooting
-* If clang has a problem with `#import "NSObject.h"`, just comment it out and you'll be fine.
+* If clang has a problem with `#import "NSObject.h"`, it seems you can just comment it out in the header and you'll be fine.
 * Replacing all the unknown types/structs with the type `id` seems to satisfy the compiler.
 I don't exactly know what to do in the circumstance where they are required to achieve the task at hand though–because they usually aren't defined anywhere in the header dump.
